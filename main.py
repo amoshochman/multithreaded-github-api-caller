@@ -8,9 +8,6 @@ import config
 logging.basicConfig(filename=config.LOG_FILE, level=logging.WARNING, format='%(asctime)s - %(levelname)s - %(message)s')
 
 
-# pool, queue, retry, maybe try except in log, CHECK IF RATELIMIT HAS REACHED... IN THIS CASE WRITE THE TIME AND NOT TRY ANYMORE, classes
-#
-
 def call_git_api(url, results):
     headers = {
         'Authorization': 'Bearer ' + config.TOKEN,
@@ -31,8 +28,6 @@ def call_git_api(url, results):
             results.append(count)
         except (ValueError, KeyError):
             logging.error(f"No total_count on response - Query: {url}")
-
-
 
 
 def parse_files(path):
